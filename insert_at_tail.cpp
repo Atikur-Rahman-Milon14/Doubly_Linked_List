@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 class Node
 {
@@ -7,14 +7,16 @@ public:
     Node *next;
     Node *prev;
 
-    Node(int val){
+    Node(int val)
+    {
         this->val = val;
         this->next = NULL;
         this->prev = NULL;
     }
 };
-void print_forward(Node* head){
-    Node* tmp = head;
+void print_forward(Node *head)
+{
+    Node *tmp = head;
     while (tmp != NULL)
     {
         cout << tmp->val << " ";
@@ -22,29 +24,31 @@ void print_forward(Node* head){
     }
     cout << endl;
 }
-void insert_at_head(Node* &head,Node* &tail, int val){
+void insert_at_tail(Node* &head,Node* &tail, int val)
+{
     Node* newNode = new Node(val);
     if(head == NULL){
         head = newNode;
         tail = newNode;
         return;
     }
-    newNode->next = head;
-    head->prev = newNode;
-    head = newNode;
+    tail->next = newNode;
+    newNode->prev = tail;
+    tail = newNode;
 }
-int main(){
-    Node* head = new Node(10);
-    Node* a = new Node(20);
-    Node* tail = new Node(30);
+int main()
+{
+    Node *head = new Node(10);
+    Node *a = new Node(20);
+    Node *tail = new Node(30);
 
     head->next = a;
     a->prev = head;
 
     a->next = tail;
     tail->prev = a;
-    insert_at_head(head,tail,100);
-    insert_at_head(head,tail,50);
+    insert_at_tail(head,tail,100);
+    insert_at_tail(head,tail,200);
     print_forward(head);
     return 0;
 }
